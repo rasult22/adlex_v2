@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import svgPaths from "../imports/svg-24rkcplway";
+import chatService from '@/services/chat.service';
 
 // IFZA validation rules
 const IFZA_RULES = {
@@ -178,7 +179,7 @@ function ValidationContent({
   onUseThisName: () => void;
 }) {
   return (
-    <div className="flex flex-col justify-between h-full w-full">
+    <div className="flex flex-col justify-between h-full w-full pb-8">
       <div className="flex flex-col gap-3 items-start w-full">
         <div className="text-large font-semibold w-full">Type a name</div>
         <CompanyNameInput 
@@ -197,7 +198,7 @@ function ValidationContent({
       
       {/* Validation Result */}
       {validationResult && !isValidating && (
-        <div className="w-full py-4">
+        <div className="w-full py-4 overflow-auto">
           {validationResult.isValid ? (
             <div className="flex items-start gap-3">
               <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center shrink-0 mt-0.5">
@@ -234,10 +235,10 @@ function ValidationContent({
                 </p>
                 {validationResult.suggestion && (
                   <>
-                    <p className="!text-base text-foreground mb-2">
+                    <p className="!text-[12px] text-foreground mb-2 whitespace-pre-wrap">
                       {validationResult.suggestion}
                     </p>
-                    <p className="!text-base text-foreground">
+                    <p className="!text-[12px] text-foreground">
                       👉 Try entering another version, and I'll check it again for you.
                     </p>
                   </>
@@ -289,12 +290,18 @@ export function CompanyNameValidationModal({
     setIsValidating(true);
     setValidationResult(null);
 
-    // Simulate validation process
-    setTimeout(() => {
-      const result = validateCompanyName(companyName);
-      setValidationResult(result);
-      setIsValidating(false);
-    }, 2000);
+    chatService.validateCompanyNameAPI(companyName, 'freezone_company')
+      .then((result) => {
+        setValidationResult({
+          isValid: result.is_valid,
+          suggestion: result.description
+        });
+        setIsValidating(false);
+      })
+      .catch((error) => {
+        console.error('Validation error:', error);
+        setIsValidating(false);
+      });
   };
 
   const handleUseThisName = () => {
@@ -317,8 +324,8 @@ export function CompanyNameValidationModal({
       style={{ backgroundColor: 'rgba(0, 0, 0, 0.48)' }}
       onClick={handleOverlayClick}
     >
-      <div className="w-full h-full flex flex-col pt-24">
-        <div className="flex-1 bg-background rounded-t-[20px] w-full">
+      <div className="w-full h-full flex flex-col pt-24 overflow-auto">
+        <div className="flex-1 bg-background rounded-t-[20px] w-full overflow-auto">
           <div className="flex flex-col items-center h-full">
             <div className="flex flex-col gap-5 items-center px-4 py-6 w-full h-full">
               {/* Handle bar */}

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import type { Button } from '@/types/backend';
 import { CitizenshipSelector } from '../citizenship-selector';
 import { BusinessActivitySelector } from '../business-activity-selector';
+import { CompanyNameSelector } from '../company-name-selector';
 
 type SelectorValue = string | string[];
 
@@ -29,6 +30,15 @@ export function SelectorDisplay({ button, onSelect, disabled = false }: Selector
     setHasSelected(true);
     onSelect(value);
   };
+  console.log(selectorType, button);
+
+  if (selectorType.includes('select company name')) {
+    return (
+      <CompanyNameSelector onComplete={(names) => {
+        handleSelect(names);
+      }} />
+    );
+  }
 
   // Business Activity Selector
   if (

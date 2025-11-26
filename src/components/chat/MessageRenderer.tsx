@@ -74,6 +74,7 @@ export function MessageRenderer({ message, onButtonClick, onSelectorChoice, disa
     (btn) => btn.action === 'select'
   );
 
+
   // Filter out select button from regular keyboard
   const regularButtons = agentResponse?.keyboard?.buttons.filter(
     (btn) => btn.action !== 'select'

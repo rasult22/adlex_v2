@@ -44,7 +44,7 @@ const chatService = {
    * @param companyType - Type of company (Freezone or Mainland)
    * @returns Validation result
    */
-  async validateCompanyName(name: string, companyType: string): Promise<any> {
+  async validateCompanyNameAPI(name: string, companyType: string): Promise<any> {
     try {
       const requestData: CompanyNameValidationRequest = {
         name,

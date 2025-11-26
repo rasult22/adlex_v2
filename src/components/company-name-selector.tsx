@@ -155,7 +155,7 @@ function Trash() {
 }
 
 export function CompanyNameSelector({ onComplete }: CompanyNameSelectorProps) {
-  const [selectedNames, setSelectedNames] = useState<(string | null)[]>([null, null, null]);
+  const [selectedNames, setSelectedNames] = useState<(string | null)[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeSlot, setActiveSlot] = useState<number>(0);
 
@@ -254,8 +254,9 @@ export function CompanyNameSelector({ onComplete }: CompanyNameSelectorProps) {
           {/* Confirm Button */}
           {hasAnyNames && (
             <button
+              disabled={selectedNames.length !== 3}
               onClick={handleConfirm}
-              className="mt-2 bg-primary rounded-lg px-4 py-3 transition-colors hover:bg-primary/90 active:bg-primary/80 flex items-center justify-center w-full"
+              className="mt-2 bg-primary disabled:opacity-50 rounded-lg px-4 py-3 transition-colors hover:bg-primary/90 active:bg-primary/80 flex items-center justify-center w-full"
             >
               <span className="!text-[16px] text-primary-foreground">Confirm</span>
             </button>
