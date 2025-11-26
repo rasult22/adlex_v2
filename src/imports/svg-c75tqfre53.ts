@@ -1,0 +1,3 @@
+export default {
+pbf7d180: "M19 12H5M5 12L12 19M5 12L12 5",
+}

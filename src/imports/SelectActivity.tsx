@@ -1,0 +1,121 @@
+function Content() {
+  return (
+    <div className="basis-0 content-stretch flex gap-[8px] grow items-center min-h-px min-w-px relative shrink-0" data-name="Content">
+      <div className="basis-0 font-['Inter:Regular',_sans-serif] font-normal grow leading-[0] min-h-px min-w-px not-italic relative shrink-0 text-[#667085] text-[16px]">
+        <p className="leading-[24px]">Your company name</p>
+      </div>
+    </div>
+  );
+}
+
+function Input() {
+  return (
+    <div className="bg-white relative rounded-[8px] shrink-0 w-full" data-name="Input">
+      <div className="flex flex-row items-center overflow-clip relative size-full">
+        <div className="box-border content-stretch flex gap-[8px] items-center px-[14px] py-[10px] relative w-full">
+          <Content />
+        </div>
+      </div>
+      <div aria-hidden="true" className="absolute border border-[#d0d5dd] border-solid inset-0 pointer-events-none rounded-[8px] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]" />
+    </div>
+  );
+}
+
+function InputWithLabel() {
+  return (
+    <div className="content-stretch flex flex-col gap-[6px] items-start relative shrink-0 w-full" data-name="Input with label">
+      <Input />
+    </div>
+  );
+}
+
+function InputFieldBase() {
+  return (
+    <div className="content-stretch flex flex-col gap-[6px] items-start relative shrink-0 w-full" data-name="_Input field base">
+      <InputWithLabel />
+    </div>
+  );
+}
+
+function InputField() {
+  return (
+    <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" data-name="Input field">
+      <InputFieldBase />
+    </div>
+  );
+}
+
+function Frame163() {
+  return (
+    <div className="content-stretch flex flex-col gap-[12px] items-start relative shrink-0 w-full">
+      <div className="font-['Inter:Semi_Bold',_sans-serif] font-semibold leading-[0] not-italic relative shrink-0 text-[20px] text-black w-full">
+        <p className="leading-[30px]">Type a name</p>
+      </div>
+      <InputField />
+    </div>
+  );
+}
+
+function Frame160() {
+  return (
+    <div className="basis-0 content-stretch flex flex-col gap-[12px] grow items-start min-h-px min-w-px relative shrink-0 w-full">
+      <Frame163 />
+    </div>
+  );
+}
+
+function ButtonBase() {
+  return (
+    <div className="basis-0 bg-[#7f56d9] grow min-h-px min-w-px relative rounded-[8px] shrink-0" data-name="_Button base">
+      <div className="flex flex-row items-center justify-center overflow-clip relative size-full">
+        <div className="box-border content-stretch flex gap-[8px] items-center justify-center px-[18px] py-[10px] relative w-full">
+          <div className="font-['Inter:Semi_Bold',_sans-serif] font-semibold leading-[0] not-italic relative shrink-0 text-[16px] text-nowrap text-white">
+            <p className="leading-[24px] whitespace-pre">Check</p>
+          </div>
+        </div>
+      </div>
+      <div aria-hidden="true" className="absolute border border-[#7f56d9] border-solid inset-0 pointer-events-none rounded-[8px] shadow-[0px_1px_2px_0px_rgba(16,24,40,0.05)]" />
+    </div>
+  );
+}
+
+function Button() {
+  return (
+    <div className="content-stretch flex items-start relative rounded-[8px] shrink-0 w-full" data-name="Button">
+      <ButtonBase />
+    </div>
+  );
+}
+
+function Frame162() {
+  return (
+    <div className="basis-0 content-stretch flex flex-col gap-[16px] grow items-start min-h-px min-w-px relative shrink-0 w-full">
+      <Frame160 />
+      <Button />
+    </div>
+  );
+}
+
+function Frame5() {
+  return (
+    <div className="bg-white h-[704px] relative rounded-tl-[20px] rounded-tr-[20px] shrink-0 w-full">
+      <div className="flex flex-col items-center overflow-clip relative size-full">
+        <div className="box-border content-stretch flex flex-col gap-[20px] h-[704px] items-center pb-[24px] pt-[12px] px-[16px] relative w-full">
+          <div className="bg-[#d9d9d9] h-[5px] rounded-[16px] shrink-0 w-[48px]" />
+          <div className="font-['Inter:Medium',_sans-serif] font-medium leading-[0] min-w-full not-italic relative shrink-0 text-[#344054] text-[14px]" style={{ width: "min-content" }}>
+            <p className="leading-[20px]">First name</p>
+          </div>
+          <Frame162 />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function SelectActivity() {
+  return (
+    <div className="bg-[rgba(0,0,0,0.48)] content-stretch flex flex-col items-center justify-end relative size-full" data-name="Select activity">
+      <Frame5 />
+    </div>
+  );
+}
